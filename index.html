@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat:wght@300&display=swap"
+        rel="stylesheet">
+    <title>Encriptdor de Texto</title>
+</head>
+
+<body>
+    <header>
+        <nav class="barra-navegacion">
+            <ul class="botones-navegacion">
+                </li>
+                <li class="logo-encriptador">
+                    <img src="assets/logo-encriptador.png" alt="Logo de encriptador">
+                    <p class="nombre-encriptador">EncriptCode</p>
+                </li>
+                <li class="logo-alura">
+                    <img src="assets/logo-alura.png" alt="Logo de alura">
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="contenedor-fila">
+            <div id="contenedor-columna">
+                <div class="barra-texto">
+                    <textarea name="texto-insertado" id="input-texto" placeholder="Ingrese el texto..."></textarea>
+                </div>
+
+                <div class="botones-opciones">
+                    <button class="btn-encriptar">Encriptar</button>
+                    <button class="btn-desencriptar">Desencriptar</button>
+                </div>
+            </div>
+
+            <div class="barra-historial">
+                <img class="personaje-encriptador" src="assets/personaje-encriptador.png"
+                    alt="Personaje del Encriptador">
+                <div class="texto-historial">
+                    <p class="titulo-historial">Ningun mensaje fue encontrado</p>
+                    <p class="indicaciones-historial">Ingrese el texto que desee encriptar o desencriptar</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="pie-pagina">
+        <p class="autor">Elaborado por Snake-13</p>
+    </footer>
+
+    <script>
+        const input = document.getElementById("input-texto");
+        const contenedor = document.getElementById("contenedor-columna");
+        contenedor.addEventListener('click', function () {
+            input.focus();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+/* CSS DE LA BARRA DE NAVEGACION */
+
+*{
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    background-color: azure;
+    margin: 0;
+    height: 100%;
+}
+
+main{
+    font-family: 'Dosis', sans-serif;
+    margin-bottom: 1.5em;
+    height: 100%;
+}
+
+
+.barra-navegacion{
+    color: white;
+    margin-bottom: 20px;
+}
+
+.botones-navegacion{
+    background-color: #2d3250;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-encriptador{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.logo-encriptador img{
+    height: 74px;
+}
+
+.nombre-encriptador{
+    font-size: 3em;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo-alura{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.logo-alura img{
+    height: 40%;
+}
+
+
+/* CSS DE BARRA DE TEXTO A CODIFICAR */
+
+.contenedor-fila{
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    height: 100%;
+}
+
+#contenedor-columna{
+    width: 100%;
+    height: 80%;
+    margin: auto 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.barra-texto{
+    width: 100%;
+    height: 100%;
+}
+
+#input-texto{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 3em;
+    resize: none;
+}
+
+#input-texto::placeholder{
+    color: blue;
+}
+
+.botones-opciones{
+    width: 60%;
+    margin-top: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-encriptar,
+.btn-desencriptar{
+    background-color: #3498DB;
+    border: none;
+    color: white;
+    height: 100%;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.3em;
+}
+
+.btn-encriptar:hover,
+.btn-desencriptar:hover{
+    background-color: #2980B9;
+}
+
+/* CSS DE BARRA DE HISTORIAL */
+
+.barra-historial{
+    width: 40%;
+    height: 100%;
+    margin: 10px 20px;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.personaje-encriptador{
+    width: 50%;
+}
+
+.texto-historial{
+    width: 80%;
+}
+
+.titulo-historial{
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.indicaciones-historial{
+    font-size: 16px;
+    color: #525252;
+}
+
+/* CSS DE PIE DE PAGINA */
+
+.pie-pagina{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    background-color: #2d3250;
+    align-self: flex-end;
+}
+
+.autor{
+    color: white;
+}
+
+/* CSS RESPONSIVE */
+
+@media screen and (max-width: 900px){
+    .contenedor-fila{
+        height: 100%;
+    }
+
+    .nombre-encriptador{
+        font-size: 1.5em;
+    }
+
+    .contenedor-fila{
+        flex-direction: column;
+    }
+
+    #contenedor-columna{
+        margin-left: 0;
+        margin-right: 0;
+        height: 80%;
+        margin-bottom: 1.3em;
+    }
+
+    #input-texto{
+        font-size: 2em;
+    }
+
+    .botones-opciones{
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .barra-historial{
+        width: 100%;
+        height: auto;
+        padding: 20px 10px;
+        margin: 10px auto;
+    }
+
+    .pie-pagina{
+        align-content: end;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .nombre-encriptador{
+        font-size: auto;
+    }
+
+    .logo-alura{
+        display: none;
+    }
+
+    .botones-opciones{
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn-encriptar{
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+
+    .btn-encriptar,
+    .btn-desencriptar{
+        height: auto;
+        width: 100%;
+    }
+}
