@@ -110,11 +110,11 @@ main{
 }
 
 .btn-encriptar,
-.btn-desencriptar{
+.btn-desencriptar,
+#copiarTexto{
     background-color: #3498DB;
     border: none;
     color: white;
-    height: 100%;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
@@ -134,6 +134,11 @@ main{
     margin: 10px 20px;
     box-shadow: 1px 1px 10px black;
     border-radius: 20px;
+    background-color: white;
+}
+
+#contenedorInicial{
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -158,6 +163,25 @@ main{
 .indicaciones-historial{
     font-size: 16px;
     color: #525252;
+}
+
+#contenedorEncriptado{
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+#textoEncriptado{
+    height: 90%;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    resize: none;
+    background-color: transparent;
+    font-size: 2em;
+    pointer-events: none;
 }
 
 /* CSS DE PIE DE PAGINA */

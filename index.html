@@ -37,17 +37,24 @@
                 </div>
 
                 <div class="botones-opciones">
-                    <button class="btn-encriptar">Encriptar</button>
-                    <button class="btn-desencriptar">Desencriptar</button>
+                    <button onclick="encriptarTexto()" class="btn-encriptar">Encriptar</button>
+                    <button onclick="desencriptarTexto()" class="btn-desencriptar">Desencriptar</button>
                 </div>
             </div>
 
             <div class="barra-historial">
-                <img class="personaje-encriptador" src="assets/personaje-encriptador.png"
-                    alt="Personaje del Encriptador">
-                <div class="texto-historial">
-                    <p class="titulo-historial">Ningun mensaje fue encontrado</p>
-                    <p class="indicaciones-historial">Ingrese el texto que desee encriptar o desencriptar</p>
+                <div id="contenedorEncriptado">
+                    <textarea name="textoEncriptado" id="textoEncriptado"></textarea>
+                    <button id="copiarTexto">Copiar</button>
+                </div>
+                
+                <div id="contenedorInicial">
+                    <img class="personaje-encriptador" src="assets/personaje-encriptador.png"
+                        alt="Personaje del Encriptador">
+                    <div class="texto-historial">
+                        <p class="titulo-historial">Ningun mensaje fue encontrado</p>
+                        <p class="indicaciones-historial">Ingrese el texto que desee encriptar o desencriptar</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,11 +65,93 @@
     </footer>
 
     <script>
-        const input = document.getElementById("input-texto");
-        const contenedor = document.getElementById("contenedor-columna");
-        contenedor.addEventListener('click', function () {
-            input.focus();
+        //COLOCAR EL PUNTERO EN EL INPUT
+        let inputTexto = document.getElementById("input-texto");
+        let contenedorInput = document.getElementById("contenedor-columna");
+        contenedorInput.addEventListener('click', function () {
+            inputTexto.focus();
         });
+    </script>
+
+    <script>
+        //REMOVER MAYUSCULAS, CARACTERES ACENTUADOS Y ESPECIALES
+        function romoverCaracteresEspeciales(texto){
+            texto = texto.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+            texto = texto.replace(/[^a-z0-9\s]/g, "");
+            return texto;
+        }
+
+        inputTexto.addEventListener("input", function(event){
+            let textoInput = event.target.value;
+            let textoSinCaracteresEspeciales = romoverCaracteresEspeciales(textoInput);
+            event.target.value = textoSinCaracteresEspeciales;
+        });
+    </script>
+
+    <script>
+
+        const claveEncriptacion = {
+            e: "enter",
+            i: "imes",
+            a: "ai",
+            o: "ober",
+            u: "ufat"
+        };
+
+        function revisarTextoInput(){
+            let textoInput = document.getElementById("input-texto");
+            if(textoInput.value.trim() == ""){
+                alert("El campo no puede estar vacio, intente de nuevo");
+                return false;
+            }
+
+            return true;
+        }
+
+        function colocarTexto(texto){
+            let textoInicial = document.getElementById("contenedorInicial");
+            let contenedorEncriptado = document.getElementById("contenedorEncriptado");
+            let textAreaEncriptado = document.getElementById("textoEncriptado");
+
+            textoInicial.style.display = "none";
+            contenedorEncriptado.style.display = "block";
+            textAreaEncriptado.value = texto;
+        }
+
+        function encriptarTexto(){
+
+            if(!revisarTextoInput()){
+                return 0;
+            }
+
+            let texto_Input = document.getElementById("input-texto");
+            let texto = texto_Input.value;
+            
+            let objEncriptacion = Object.entries(claveEncriptacion);
+
+            for(let [claveObj, valorObj] of objEncriptacion){
+                texto = texto.replace(new RegExp(claveObj, "g"), valorObj); 
+            }
+
+            colocarTexto(texto);
+        }
+
+        function desencriptarTexto(){
+            if(!revisarTextoInput()){
+                return 0;
+            }
+
+            let texto_Input = document.getElementById("input-texto");
+            let texto = texto_Input.value;
+            
+            let objEncriptacion = Object.entries(claveEncriptacion);
+
+            for(let [claveObj, valorObj] of objEncriptacion){
+                texto = texto.replace(new RegExp(valorObj, "g"), claveObj); 
+            }
+
+            colocarTexto(texto);
+        }
     </script>
 </body>
 
