@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat:wght@300&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <title>Encriptdor de Texto</title>
 </head>
 
@@ -17,7 +16,6 @@
     <header>
         <nav class="barra-navegacion">
             <ul class="botones-navegacion">
-                </li>
                 <li class="logo-encriptador">
                     <img src="assets/logo-encriptador.png" alt="Logo de encriptador">
                     <p class="nombre-encriptador">EncriptCode</p>
@@ -30,30 +28,30 @@
     </header>
 
     <main>
-        <div class="contenedor-fila">
-            <div id="contenedor-columna">
-                <div class="barra-texto">
+        <div class="fila-contenedor">
+            <div id="contenedorTextoInput">
+                <div class="barra-textoInput">
                     <textarea name="texto-insertado" id="input-texto" placeholder="Ingrese el texto..."></textarea>
                 </div>
 
-                <div class="botones-opciones">
+                <div class="botones-accion">
                     <button onclick="encriptarTexto()" class="btn-encriptar">Encriptar</button>
                     <button onclick="desencriptarTexto()" class="btn-desencriptar">Desencriptar</button>
                 </div>
             </div>
 
             <div class="barra-historial">
-                <div id="contenedorEncriptado">
-                    <textarea name="textoEncriptado" id="textoEncriptado"></textarea>
-                    <button id="copiarTexto">Copiar</button>
+                <div id="contenedorTextoTratado">
+                    <textarea name="textoTratado" onclick="bloquearTextArea()" id="textoTratado" placeholder="..."></textarea>
+                    <button onclick="copiarTexto()" id="copiarTexto">Copiar</button>
                 </div>
                 
-                <div id="contenedorInicial">
+                <div id="contenedorTextoInicial">
                     <img class="personaje-encriptador" src="assets/personaje-encriptador.png"
                         alt="Personaje del Encriptador">
                     <div class="texto-historial">
-                        <p class="titulo-historial">Ningun mensaje fue encontrado</p>
-                        <p class="indicaciones-historial">Ingrese el texto que desee encriptar o desencriptar</p>
+                        <p class="titulo-Inicial">Ningun mensaje fue encontrado</p>
+                        <p class="indicaciones-iniciales">Ingrese el texto que desee encriptar o desencriptar</p>
                     </div>
                 </div>
             </div>
@@ -61,29 +59,38 @@
     </main>
 
     <footer class="pie-pagina">
-        <p class="autor">Elaborado por Snake-13</p>
+        <p>Elaborado por Snake-13</p>
     </footer>
 
     <script>
-        //COLOCAR EL PUNTERO EN EL INPUT
-        let inputTexto = document.getElementById("input-texto");
-        let contenedorInput = document.getElementById("contenedor-columna");
-        contenedorInput.addEventListener('click', function () {
-            inputTexto.focus();
-        });
+        //BLOQUEAR TEXT AREA QUE MUESTRA EL TEXTO ENCRIPTADO O DESENCRIPTADO
+        function bloquearTextArea(){
+            const AreaTextoTratado = document.getElementById("textoTratado");
+            AreaTextoTratado.readOnly = true;
+        }
     </script>
 
     <script>
         //REMOVER MAYUSCULAS, CARACTERES ACENTUADOS Y ESPECIALES
-        function romoverCaracteresEspeciales(texto){
-            texto = texto.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-            texto = texto.replace(/[^a-z0-9\s]/g, "");
-            return texto;
+        function romoverCaracteresEspeciales(textoAcondicionado){
+            textoAcondicionado = textoAcondicionado.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+            textoAcondicionado = textoAcondicionado.replace(/[^a-z0-9\s]/g, "");
+            return textoAcondicionado;
         }
+    </script>
+
+    <script>
+        //COLOCAR EL PUNTERO EN EL INPUT
+        let inputTexto = document.getElementById("input-texto");
+        let contenedorTextoInput = document.getElementById("contenedorTextoInput");
+
+        contenedorTextoInput.addEventListener('click', function () {
+            inputTexto.focus();
+        });
 
         inputTexto.addEventListener("input", function(event){
-            let textoInput = event.target.value;
-            let textoSinCaracteresEspeciales = romoverCaracteresEspeciales(textoInput);
+            let textoInputUsuario = event.target.value;
+            let textoSinCaracteresEspeciales = romoverCaracteresEspeciales(textoInputUsuario);
             event.target.value = textoSinCaracteresEspeciales;
         });
     </script>
@@ -99,41 +106,40 @@
         };
 
         function revisarTextoInput(){
-            let textoInput = document.getElementById("input-texto");
-            if(textoInput.value.trim() == ""){
+            let textoIngresado = document.getElementById("input-texto");
+            if(textoIngresado.value.trim() == ""){
                 alert("El campo no puede estar vacio, intente de nuevo");
                 return false;
             }
-
             return true;
         }
 
-        function colocarTexto(texto){
-            let textoInicial = document.getElementById("contenedorInicial");
-            let contenedorEncriptado = document.getElementById("contenedorEncriptado");
-            let textAreaEncriptado = document.getElementById("textoEncriptado");
+        function colocarTexto(textoTratado){
+            let contenedorTextoInput = document.getElementById("contenedorTextoInicial");
+            let contenedorTextoTratado = document.getElementById("contenedorTextoTratado");
+            let textAreaEncriptado = document.getElementById("textoTratado");
 
-            textoInicial.style.display = "none";
-            contenedorEncriptado.style.display = "block";
-            textAreaEncriptado.value = texto;
+            contenedorTextoInput.style.display = "none";
+            contenedorTextoTratado.style.display = "flex";
+            textAreaEncriptado.value = textoTratado;
         }
 
         function encriptarTexto(){
-
             if(!revisarTextoInput()){
                 return 0;
             }
 
-            let texto_Input = document.getElementById("input-texto");
-            let texto = texto_Input.value;
+            let textoSinEncriptar = document.getElementById("input-texto");
+            let textoEncriptado = textoSinEncriptar.value;
+            textoSinEncriptar.value = "";
             
             let objEncriptacion = Object.entries(claveEncriptacion);
 
             for(let [claveObj, valorObj] of objEncriptacion){
-                texto = texto.replace(new RegExp(claveObj, "g"), valorObj); 
+                textoEncriptado = textoEncriptado.replace(new RegExp(claveObj, "g"), valorObj); 
             }
 
-            colocarTexto(texto);
+            colocarTexto(textoEncriptado);
         }
 
         function desencriptarTexto(){
@@ -141,16 +147,30 @@
                 return 0;
             }
 
-            let texto_Input = document.getElementById("input-texto");
-            let texto = texto_Input.value;
+            let textoEncriptado = document.getElementById("input-texto");
+            let textoDesencriptado = textoEncriptado.value;
+            textoEncriptado.value = "";
             
             let objEncriptacion = Object.entries(claveEncriptacion);
 
             for(let [claveObj, valorObj] of objEncriptacion){
-                texto = texto.replace(new RegExp(valorObj, "g"), claveObj); 
+                textoDesencriptado = textoDesencriptado.replace(new RegExp(valorObj, "g"), claveObj); 
             }
 
-            colocarTexto(texto);
+            colocarTexto(textoDesencriptado);
+        }
+    </script>
+
+    <script>
+        function copiarTexto(){
+            const TextAreaTratado = document.getElementById("textoTratado");
+            const TextAreaUsuario = document.getElementById("input-texto");
+
+            TextAreaTratado.select();
+            document.execCommand("copy");
+            TextAreaTratado.setSelectionRange(0,0);
+            alert("Texto copiado");
+            TextAreaUsuario.focus();
         }
     </script>
 </body>
