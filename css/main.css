@@ -121,6 +121,12 @@ main{
     background-color: #fc8e40;
 }
 
+.text-advertencia{
+    margin-left: auto;
+    margin-bottom: 15px;
+    color: white;
+}
+
 /* CSS DE BARRA DE HISTORIAL */
 
 .barra-historial{
