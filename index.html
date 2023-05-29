@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="assets/favicon.ico">
+
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <title>Encriptdor de Texto</title>
+    <title>CypherLock - Encriptador de Texto</title>
 </head>
 
 <body>
@@ -18,10 +21,7 @@
             <ul class="botones-navegacion">
                 <li class="logo-encriptador">
                     <img src="assets/logo-encriptador.png" alt="Logo de encriptador">
-                    <p class="nombre-encriptador">EncriptCode</p>
-                </li>
-                <li class="logo-alura">
-                    <img src="assets/logo-alura.png" alt="Logo de alura">
+                    <p class="nombre-encriptador">CypherLock</p>
                 </li>
             </ul>
         </nav>
@@ -59,120 +59,12 @@
     </main>
 
     <footer class="pie-pagina">
-        <p>Elaborado por Snake-13</p>
+       <a href="https://github.com/13Snake/CypherLock.git" target="_blank"><img src="assets/github.png" alt="Repositorio del proyecto"></a>
+        <a href="https://www.linkedin.com/in/jair-morales-dev/" target="_blank"><img src="assets/linkedin.png" alt="Logo de Linkedin"></a>
+        <img src="assets/logo-alura.png" alt="Logo de Alura">
     </footer>
 
-    <script>
-        //BLOQUEAR TEXT AREA QUE MUESTRA EL TEXTO ENCRIPTADO O DESENCRIPTADO
-        function bloquearTextArea(){
-            const AreaTextoTratado = document.getElementById("textoTratado");
-            AreaTextoTratado.readOnly = true;
-        }
-    </script>
-
-    <script>
-        //REMOVER MAYUSCULAS, CARACTERES ACENTUADOS Y ESPECIALES
-        function romoverCaracteresEspeciales(textoAcondicionado){
-            textoAcondicionado = textoAcondicionado.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-            textoAcondicionado = textoAcondicionado.replace(/[^a-z0-9\s]/g, "");
-            return textoAcondicionado;
-        }
-    </script>
-
-    <script>
-        //COLOCAR EL PUNTERO EN EL INPUT
-        let inputTexto = document.getElementById("input-texto");
-        let contenedorTextoInput = document.getElementById("contenedorTextoInput");
-
-        contenedorTextoInput.addEventListener('click', function () {
-            inputTexto.focus();
-        });
-
-        inputTexto.addEventListener("input", function(event){
-            let textoInputUsuario = event.target.value;
-            let textoSinCaracteresEspeciales = romoverCaracteresEspeciales(textoInputUsuario);
-            event.target.value = textoSinCaracteresEspeciales;
-        });
-    </script>
-
-    <script>
-
-        const claveEncriptacion = {
-            e: "enter",
-            i: "imes",
-            a: "ai",
-            o: "ober",
-            u: "ufat"
-        };
-
-        function revisarTextoInput(){
-            let textoIngresado = document.getElementById("input-texto");
-            if(textoIngresado.value.trim() == ""){
-                alert("El campo no puede estar vacio, intente de nuevo");
-                return false;
-            }
-            return true;
-        }
-
-        function colocarTexto(textoTratado){
-            let contenedorTextoInput = document.getElementById("contenedorTextoInicial");
-            let contenedorTextoTratado = document.getElementById("contenedorTextoTratado");
-            let textAreaEncriptado = document.getElementById("textoTratado");
-
-            contenedorTextoInput.style.display = "none";
-            contenedorTextoTratado.style.display = "flex";
-            textAreaEncriptado.value = textoTratado;
-        }
-
-        function encriptarTexto(){
-            if(!revisarTextoInput()){
-                return 0;
-            }
-
-            let textoSinEncriptar = document.getElementById("input-texto");
-            let textoEncriptado = textoSinEncriptar.value;
-            textoSinEncriptar.value = "";
-            
-            let objEncriptacion = Object.entries(claveEncriptacion);
-
-            for(let [claveObj, valorObj] of objEncriptacion){
-                textoEncriptado = textoEncriptado.replace(new RegExp(claveObj, "g"), valorObj); 
-            }
-
-            colocarTexto(textoEncriptado);
-        }
-
-        function desencriptarTexto(){
-            if(!revisarTextoInput()){
-                return 0;
-            }
-
-            let textoEncriptado = document.getElementById("input-texto");
-            let textoDesencriptado = textoEncriptado.value;
-            textoEncriptado.value = "";
-            
-            let objEncriptacion = Object.entries(claveEncriptacion);
-
-            for(let [claveObj, valorObj] of objEncriptacion){
-                textoDesencriptado = textoDesencriptado.replace(new RegExp(valorObj, "g"), claveObj); 
-            }
-
-            colocarTexto(textoDesencriptado);
-        }
-    </script>
-
-    <script>
-        function copiarTexto(){
-            const TextAreaTratado = document.getElementById("textoTratado");
-            const TextAreaUsuario = document.getElementById("input-texto");
-
-            TextAreaTratado.select();
-            document.execCommand("copy");
-            TextAreaTratado.setSelectionRange(0,0);
-            alert("Texto copiado");
-            TextAreaUsuario.focus();
-        }
-    </script>
+    <script src="scrips/encriptar-desencriptar.js"></script>
 </body>
 
 </html>

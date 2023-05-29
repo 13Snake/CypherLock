@@ -9,7 +9,7 @@ html{
 }
 
 body{
-    background-color: azure;
+    background-color: #424769;
     margin: 0;
     height: 100%;
 }
@@ -26,6 +26,7 @@ main{
 }
 
 .botones-navegacion{
+    padding: 10px 10px;
     background-color: #2d3250;
     list-style: none;
     display: flex;
@@ -46,13 +47,6 @@ main{
     font-size: 3em;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.logo-alura{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 10px;
 }
 
 .logo-alura img{
@@ -94,11 +88,11 @@ main{
     height: 100%;
     font-size: 3em;
     resize: none;
-    color: black;
+    color: white;
 }
 
 #input-texto::placeholder{
-    color: blue;
+    color: white;
 }
 
 .botones-accion{
@@ -110,19 +104,21 @@ main{
 }
 
 .btn-encriptar,
-.btn-desencriptar{
-    background-color: #3498DB;
+.btn-desencriptar,
+#copiarTexto{
+    background-color: #fa9a55;
     border: none;
-    color: white;
+    font-weight: bold;
+    color: black;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 1.3em;
 }
 
 .btn-encriptar:hover,
 .btn-desencriptar:hover{
-    background-color: #2980B9;
+    background-color: #fc8e40;
 }
 
 /* CSS DE BARRA DE HISTORIAL */
@@ -133,7 +129,7 @@ main{
     margin: 10px 20px;
     box-shadow: 1px 1px 10px black;
     border-radius: 20px;
-    background-color: white;
+    background-color: #5864a3;
 }
 
 #contenedorTextoTratado{
@@ -155,17 +151,12 @@ main{
     resize: none;
     background-color: transparent;
     font-size: 2em;
+    color: white;
 }
 
 #copiarTexto{
-    background-color: #3498DB;
     width: 95%;
     margin: 10px auto;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1.3em;
 }
 
 #contenedorTextoInicial{
@@ -183,30 +174,37 @@ main{
 
 .texto-historial{
     width: 80%;
+    color: white;
 }
 
 .titulo-Inicial{
     font-size: 25px;
+    color: white;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .indicaciones-iniciales{
     font-size: 16px;
-    color: #3f3e3e;
+    color: #ffffff;
 }
 
 /* CSS DE PIE DE PAGINA */
 
 .pie-pagina{
-    text-align: center;
-    display: flex;
-    justify-content: center;
     width: 100%;
-    height: 50px;
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
     background-color: #2d3250;
     align-self: flex-end;
     color: white;
+}
+
+.pie-pagina img{
+    padding-top: 15px;
+    width: 50px;
+    height: 60px;
 }
 
 /* CSS RESPONSIVE */
